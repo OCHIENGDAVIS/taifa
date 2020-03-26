@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'scrapings.apps.ScrapingsConfig'
+    'scrapings.apps.ScrapingsConfig',
+    'accounts.apps.AccountsConfig'
 ]
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,8 +79,12 @@ WSGI_APPLICATION = 'taifa.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME' : 'taifa',
+        'USER' : 'postgres',
+        'PASSWORD' : 'pass1234',
+        'HOST' : 'localhost',
+        'PORT' : 5432,
     }
 }
 
