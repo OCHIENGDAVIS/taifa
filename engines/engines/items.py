@@ -6,9 +6,20 @@
 # https://docs.scrapy.org/en/latest/topics/items.html
 
 import scrapy
+from scrapy_djangoitem import DjangoItem
+from scrapings.models import CitizenModel
 
 
-class EnginesItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class EnginesItem(DjangoItem):
+    django_model = CitizenModel
+    # title = scrapy.Field()
+    # content = scrapy.Field()
+    # author = scrapy.Field()
+    # image = scrapy.Field()
+    # published_on = scrapy.Field()
+    # summary = scrapy.Field()
+    # url = scrapy.Field()
+    # project = scrapy.Field()
+    # spider = scrapy.Field()
+    # server = scrapy.Field()
+    # data = scrapy.Field()

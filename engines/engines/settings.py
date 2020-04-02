@@ -8,6 +8,15 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+import os
+import sys
+
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+print(PROJECT_DIR)
+sys.path.append(PROJECT_DIR)
+os.environ['DJANGO_SETTINGS_MODULE'] = 'taifa.settings'
+import django
+django.setup()
 
 BOT_NAME = 'engines'
 
@@ -17,12 +26,13 @@ NEWSPIDER_MODULE = 'engines.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'engines (+http://www.yourdomain.com)'
+USER_AGENT = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS = 32
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -46,9 +56,22 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    'engines.middlewares.EnginesSpiderMiddleware': 543,
-#}
+SPIDER_MIDDLEWARES = {
+    'scrapy_deltafetch.DeltaFetch': 100,
+    'scrapy_magicfields.MagicFieldsMiddleware': 200,
+   'engines.middlewares.EnginesSpiderMiddleware': 543,
+}
+
+DELTAFETCH_ENABLED = True
+
+MAGICFIELDS_ENABLED = True
+
+MAGIC_FIELDS = {
+    "timestamp": "$time",
+    "spider": "$spider:name",
+    "url": "scraped from $response:url",
+    "domain": "$response:url,r'https?://([\w\.]+)/']",
+}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
@@ -64,9 +87,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'engines.pipelines.EnginesPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'engines.pipelines.EnginesPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

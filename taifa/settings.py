@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'scrapings.apps.ScrapingsConfig',
-    'accounts.apps.AccountsConfig'
+    'accounts.apps.AccountsConfig',
+    'posts.apps.PostsConfig'
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
@@ -66,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
     },
@@ -80,11 +82,11 @@ WSGI_APPLICATION = 'taifa.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME' : 'taifa',
-        'USER' : 'postgres',
-        'PASSWORD' : 'pass1234',
-        'HOST' : 'localhost',
-        'PORT' : 5432,
+        'NAME': 'taifa',
+        'USER': 'postgres',
+        'PASSWORD': 'pass1234',
+        'HOST': 'localhost',
+        'PORT': 5432,
     }
 }
 

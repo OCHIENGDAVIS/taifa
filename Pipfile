@@ -10,6 +10,8 @@ django = "*"
 scrapy = "*"
 pylint = "*"
 psycopg2-binary = "*"
+scrapy-djangoitem = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.8"
