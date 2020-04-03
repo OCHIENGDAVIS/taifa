@@ -6,20 +6,23 @@
 # https://docs.scrapy.org/en/latest/topics/items.html
 
 import scrapy
-from scrapy_djangoitem import DjangoItem
-from scrapings.models import CitizenModel
+# from scrapy_djangoitem import DjangoItem
+# from scrapings.models import CitizenModel
 
 
-class EnginesItem(DjangoItem):
-    django_model = CitizenModel
-    # title = scrapy.Field()
-    # content = scrapy.Field()
-    # author = scrapy.Field()
-    # image = scrapy.Field()
-    # published_on = scrapy.Field()
-    # summary = scrapy.Field()
-    # url = scrapy.Field()
-    # project = scrapy.Field()
-    # spider = scrapy.Field()
-    # server = scrapy.Field()
-    # data = scrapy.Field()
+class EnginesItem(scrapy.Item):
+    # django_model = CitizenModel
+    title = scrapy.Field()
+    content = scrapy.Field()
+    author = scrapy.Field()
+    image = scrapy.Field()
+    published_on = scrapy.Field()
+    summary = scrapy.Field()
+    url = scrapy.Field()
+    project = scrapy.Field()
+    spider = scrapy.Field()
+    server = scrapy.Field()
+    data = scrapy.Field()
+    timestamp = scrapy.Field()
+    spider = scrapy.Field()
+    domain = scrapy.Field()
